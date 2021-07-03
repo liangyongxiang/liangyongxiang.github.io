@@ -67,9 +67,9 @@ alt="gentoo-wiki-steam">
 &lt;li>image&lt;/li>
 &lt;li>temp&lt;/li>
 &lt;li>work&lt;/li>
+&lt;li>environment file&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>environment file&lt;/li>
 &lt;li>stage介绍&lt;/li>
 &lt;/ul>
 &lt;h1 id="ebuild-write">EBuild Write&lt;/h1>
