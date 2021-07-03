@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>yongxiang</title><link>https://liangyongxiang.github.io/</link><description>Recent content on yongxiang</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 03 Jul 2021 16:21:08 +0800</lastBuildDate><atom:link href="https://liangyongxiang.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>我的Gentoo总结</title><link>https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/</link><pubDate>Sat, 03 Jul 2021 16:21:08 +0800</pubDate><guid>https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/</guid><description>&lt;h1 id="gentoo-wiki">Gentoo Wiki&lt;/h1>
-&lt;p>如果想了解具体某些软件的使用，可以搜索 &amp;ldquo;gentoo wiki keyword&amp;rdquo;，例如 &lt;a class="link" href="https://www.google.com/search?q=gentoo&amp;#43;wiki&amp;#43;steam" target="_blank" rel="noopener"
->gentoo wiki steam&lt;/a>。&lt;/p>
+&lt;p>如果想了解具体某些package的使用，可以搜索 &amp;ldquo;gentoo wiki keyword&amp;rdquo;，例如 &lt;a class="link" href="https://www.google.com/search?q=gentoo&amp;#43;wiki&amp;#43;steam" target="_blank" rel="noopener"
+>gentoo wiki steam&lt;/a>：&lt;/p>
+&lt;p>&lt;figure style="flex-grow: 147; flex-basis: 353px">
+&lt;a href="https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam.png" data-size="1721x1169">&lt;img src="https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam.png"
+srcset="https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam_huafa04af3db5f171b50c3cf2989e0d593_171018_480x0_resize_box_2.png 480w, https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam_huafa04af3db5f171b50c3cf2989e0d593_171018_1024x0_resize_box_2.png 1024w"
+width="1721"
+height="1169"
+loading="lazy"
+alt="gentoo-wiki-steam">
+&lt;/a>
+&lt;figcaption>gentoo-wiki-steam&lt;/figcaption>
+&lt;/figure>&lt;/p>
 &lt;h1 id="portage">Portage&lt;/h1>
 &lt;p>&lt;a class="link" href="https://wiki.gentoo.org/wiki/Portage" target="_blank" rel="noopener"
 >官方wiki&lt;/a>
