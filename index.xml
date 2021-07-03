@@ -50,12 +50,15 @@
 &lt;/ul>
 &lt;/li>
 &lt;li>PORTAGE_TMPDIR目录介绍
--├build-info
--├distdir
--├homedir
--├image
--├temp
--└work&lt;/li>
+&lt;ul>
+&lt;li>build-info&lt;/li>
+&lt;li>distdir&lt;/li>
+&lt;li>homedir&lt;/li>
+&lt;li>image&lt;/li>
+&lt;li>temp&lt;/li>
+&lt;li>work&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>environment file&lt;/li>
 &lt;li>stage介绍&lt;/li>
 &lt;/ul>
