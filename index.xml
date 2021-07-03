@@ -50,16 +50,20 @@ alt="gentoo-wiki-steam">
 &lt;/ul>
 &lt;h1 id="熟悉ebuild打包">熟悉ebuild打包&lt;/h1>
 &lt;ul>
-&lt;li>建立自己的overlay用来实验:
-&lt;a href="https://wiki.gentoo.org/wiki/Custom_EBuild_repository">https://wiki.gentoo.org/wiki/Custom_EBuild_repository&lt;/a>&lt;/li>
-&lt;li>ebuild命令学习
+&lt;li>
+&lt;p>建立自己的overlay用来实验:
+&lt;a href="https://wiki.gentoo.org/wiki/Custom_ebuild_repository">https://wiki.gentoo.org/wiki/Custom_ebuild_repository&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ebuild命令学习&lt;/p>
 &lt;ul>
 &lt;li>user account&lt;/li>
 &lt;li>EBuild xxx.EBuild help&lt;/li>
 &lt;li>EBuild xxx.EBuild clean install&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>PORTAGE_TMPDIR目录介绍
+&lt;li>
+&lt;p>PORTAGE_TMPDIR目录介绍&lt;/p>
 &lt;ul>
 &lt;li>build-info&lt;/li>
 &lt;li>distdir&lt;/li>
@@ -70,7 +74,9 @@ alt="gentoo-wiki-steam">
 &lt;li>environment file&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>stage介绍&lt;/li>
+&lt;li>
+&lt;p>stage介绍&lt;/p>
+&lt;/li>
 &lt;/ul>
 &lt;h1 id="ebuild-write">EBuild Write&lt;/h1>
 &lt;h2 id="devmanual">devmanual&lt;/h2>
