@@ -134,7 +134,7 @@ index 49bda6e49..5aafb1e82 &lt;span class="m">100644&lt;/span>
 &lt;ol>
 &lt;li>注册github帐号，fork gentoo-zh（具体过程略）&lt;/li>
 &lt;li>clone gentoo-zh，添加需要的remote&lt;/li>
-&lt;li>拉去gentoo-zh最新的修改&lt;/li>
+&lt;li>拉取gentoo-zh最新的修改&lt;/li>
 &lt;li>复制local overlay的修改过来&lt;/li>
 &lt;li>在github里发起pull request&lt;/li>
 &lt;/ol>
