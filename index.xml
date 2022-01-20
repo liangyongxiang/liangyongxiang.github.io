@@ -178,7 +178,8 @@ Author: Yongxiang Liang &amp;lt;tanekliang@gmail.com&amp;gt;
 Date: Thu Jan &lt;span class="m">20&lt;/span> 22:45:40 &lt;span class="m">2022&lt;/span> +0800
 app-office/wps-office: add 11.1.0.10702
 ......
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git cherry-pick 4adaa116596ee8f1500ec55f882bb56aa68076d6
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里也可以将local overlay的commit操作重复一遍，当然还有更聪明的办法，即使用cherry-pick来复制之前local overlay的commit：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git cherry-pick 4adaa116596ee8f1500ec55f882bb56aa68076d6
 &lt;span class="o">[&lt;/span>wps-office 130a38bc4&lt;span class="o">]&lt;/span> app-office/wps-office: bump to 11.1.0.10920
 Date: Thu Jan &lt;span class="m">20&lt;/span> 22:48:04 &lt;span class="m">2022&lt;/span> +0800
 &lt;span class="m">2&lt;/span> files changed, &lt;span class="m">5&lt;/span> insertions&lt;span class="o">(&lt;/span>+&lt;span class="o">)&lt;/span>, &lt;span class="m">5&lt;/span> deletions&lt;span class="o">(&lt;/span>-&lt;span class="o">)&lt;/span>
