@@ -135,9 +135,9 @@ Changes to be committed:
         new file:   app-office/wps-office/Manifest
         new file:   app-office/wps-office/metadata.xml
         new file:   app-office/wps-office/wps-office-11.1.0.10702.ebuild
-root <span class=c1># git commit -m &#39;app-office/wps-office: add 11.1.0.10702&#39;</span>
-</code></pre></div><p>所谓bump，这里其实就是升级，所以我们只需要:
-需要保留旧版的时候：</p>
+</code></pre></div><p>提交修改：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git commit -m &#39;app-office/wps-office: add 11.1.0.10702&#39;</span>
+</code></pre></div><p>如果需要保留旧版的时候：</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># cp wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild</span>
 root <span class=c1># git add wps-office-11.1.0.10920.ebuild</span>
 </code></pre></div><p>不需要保留原版的时候：</p>
@@ -148,8 +148,8 @@ On branch master
 Changes to be committed:
   <span class=o>(</span>use <span class=s2>&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
 		renamed:    wps-office-11.1.0.10702.ebuild -&gt; wps-office-11.1.0.10920.ebuild
-</code></pre></div><p>由于我们升级到新的版本需要下载新版本的distfile（可以是源码或者二进制包），这时候需要更新manifest文件。
-更新manifest文件可以通过ebuild/repoman等等命令，这里使用的是repoman：</p>
+</code></pre></div><p>由于我们升级到新的版本需要下载新版本的distfile（可以是源码或者二进制包），这时候需要更新manifest文件。</p>
+<p>更新manifest文件可以通过ebuild/repoman等等命令，这里使用的是repoman：</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># repoman manifest</span>
 &gt;&gt;&gt; Downloading <span class=s1>&#39;https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/10920/wps-office_11.1.0.10920_amd64.deb&#39;</span>
 /var/cache/distfiles/wps-office_11. 100%<span class=o>[==================================================================</span>&gt;<span class=o>]</span> 351.76M  28.7MB/s    in 12s
@@ -178,7 +178,7 @@ On branch master
 Changes to be committed:
   <span class=o>(</span>use <span class=s2>&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
         new file:   Manifest
-		renamed:    wps-office-11.1.0.10702.ebuild -&gt; wps-office-11.1.0.10920.ebuild
+        renamed:    wps-office-11.1.0.10702.ebuild -&gt; wps-office-11.1.0.10920.ebuild
 </code></pre></div><h2 id=安装运行测试>安装运行测试</h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># emerge -av app-office/wps-office</span>
 These are the packages that would be merged, in order:

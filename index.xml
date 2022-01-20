@@ -41,9 +41,9 @@ Changes to be committed:
 new file: app-office/wps-office/Manifest
 new file: app-office/wps-office/metadata.xml
 new file: app-office/wps-office/wps-office-11.1.0.10702.ebuild
-root &lt;span class="c1"># git commit -m &amp;#39;app-office/wps-office: add 11.1.0.10702&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>所谓bump，这里其实就是升级，所以我们只需要:
-需要保留旧版的时候：&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>提交修改：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git commit -m &amp;#39;app-office/wps-office: add 11.1.0.10702&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果需要保留旧版的时候：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># cp wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild&lt;/span>
 root &lt;span class="c1"># git add wps-office-11.1.0.10920.ebuild&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不需要保留原版的时候：&lt;/p>
@@ -54,8 +54,8 @@ On branch master
 Changes to be committed:
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to unstage&lt;span class="o">)&lt;/span>
 renamed: wps-office-11.1.0.10702.ebuild -&amp;gt; wps-office-11.1.0.10920.ebuild
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于我们升级到新的版本需要下载新版本的distfile（可以是源码或者二进制包），这时候需要更新manifest文件。
-更新manifest文件可以通过ebuild/repoman等等命令，这里使用的是repoman：&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于我们升级到新的版本需要下载新版本的distfile（可以是源码或者二进制包），这时候需要更新manifest文件。&lt;/p>
+&lt;p>更新manifest文件可以通过ebuild/repoman等等命令，这里使用的是repoman：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># repoman manifest&lt;/span>
 &amp;gt;&amp;gt;&amp;gt; Downloading &lt;span class="s1">&amp;#39;https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/10920/wps-office_11.1.0.10920_amd64.deb&amp;#39;&lt;/span>
 /var/cache/distfiles/wps-office_11. 100%&lt;span class="o">[==================================================================&lt;/span>&amp;gt;&lt;span class="o">]&lt;/span> 351.76M 28.7MB/s in 12s
