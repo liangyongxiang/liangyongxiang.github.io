@@ -204,21 +204,14 @@ RepoMan scours the neighborhood...
 &gt;&gt;&gt; Creating Manifest for /var/db/repos/local/app-office/wps-office
 
 Note: use --include-dev (-d) to check dependencies for 'dev' profiles
-
-* 2 files being committed...
-[master 923aeea] app-office/wps-office: bump to 11.1.0.10920
- 3 files changed, 103 insertions(+)
- create mode 100644 app-office/wps-office/Manifest
- create mode 100644 app-office/wps-office/metadata.xml
- create mode 100644 app-office/wps-office/wps-office-11.1.0.10920.ebuild
-
+...
 Commit complete.
 RepoMan sez: &quot;If everyone were like you, I'd be out of business!&quot;
 </code></pre><p>检查我们的提交：</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git show</span>
-commit 923aeeaa0009f7153237b94c23bb6441f4e45c73 <span class=o>(</span>HEAD -&gt; master<span class=o>)</span>
+commit 4adaa116596ee8f1500ec55f882bb56aa68076d6 <span class=o>(</span>local/master<span class=o>)</span>
 Author: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
-Date:   Thu Jan <span class=m>20</span> 22:00:26 <span class=m>2022</span> +0800
+Date:   Thu Jan <span class=m>20</span> 22:48:04 <span class=m>2022</span> +0800
 
     app-office/wps-office: bump to 11.1.0.10920
 
@@ -226,15 +219,15 @@ Date:   Thu Jan <span class=m>20</span> 22:00:26 <span class=m>2022</span> +0800
     Signed-off-by: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
 
 diff --git a/app-office/wps-office/Manifest b/app-office/wps-office/Manifest
-new file mode <span class=m>100644</span>
-index 0000000..5aafb1e
---- /dev/null
+index 49bda6e49..5aafb1e82 <span class=m>100644</span>
+--- a/app-office/wps-office/Manifest
 +++ b/app-office/wps-office/Manifest
-@@ -0,0 +1,3 @@
+@@ -1,3 +1,3 @@
+-DIST wps-office_11.1.0.10702_amd64.deb <span class=m>364304508</span> BLAKE2B 877aee01ef637d3e14569399a7b93226f17b7dc9cae482889d520b630c1d2fb59eceb5f8e5fed934ca666cda226433a3b6c50ef0a3bf18a60965dc0eeb322064 SHA512 9742955bd0efe802aa0666c857f42257bd0461fec566e141c9e899b31f6482894720a3c37e28337744ecc9ff2b5a6fc4900370260241423d9489823723ded547
+-DIST wps-office_11.1.0.10702_arm64.deb <span class=m>328456554</span> BLAKE2B 45e53ad757306a95e7ac7f98827e3f3d91d354b198f46ef67443bf1f81eba0395777665f6f0d69bcda5c7b8e9767aeb3108fdf7f0023fca1d434157986d36e3d SHA512 75773dfa6fee697218a8e1e7fa8be5dd2c7d673bcb26416c864ba963f305d6ddd0cb4511b3263fcce1b50a052342d8d1f8a7ff15637e6295d2156a220cc23f07
+-DIST wps-office_11.1.0.10702_mips64el.deb <span class=m>321387520</span> BLAKE2B 80217266f3387c8a9f8686608391d275cfbd275678131b315d4244e8217404aeee1c69b4fee381c5e1818e1a61fac96503196031c8fa014795dbb5669e56b28f SHA512 10f0f85da540e7d4939b574bd2336bea7b7753f4e97001fc7393f14f1191e7b2e42c9122f3833e996773ef80fc05b66d5b937995c484c888e1c533538fe76f12
 +DIST wps-office_11.1.0.10920_amd64.deb <span class=m>368846078</span> BLAKE2B b33f6849244b658c65003501fae8b6ac4ce9f51131e96a380e055df9278bda26618f98aff7cf52e354570f6c9c82b31010eaf6765e7ef161b6e10747b08044b2 SHA512 15d8540cd4aa1efcdfd90c1ac69fee7298caf510edd45f9558fab5075d111e6458d07aea0c06dadde8b56d001177ab2447bcfee4177400938db6f56cc7d23e6f
 +DIST wps-office_11.1.0.10920_arm64.deb <span class=m>327865640</span> BLAKE2B 665139ded95a017d7ed1bfcc7de5b19d46c5b08e2a905695da86e2358f652f3a20046cafab7626b6014b040c894e112306783fc956d22882906d7ebfa964f5c3 SHA512 b7dca412b337872acc70be028cddae38ff0e0902f5683d1520b56753f0bb48e35644166f7311cd0c03819a3cd9be125d41ec50e3876405a2ebbed1eef050f9d6
-+DIST wps-office_11.1.0.10920_mips64el.deb <span class=m>324211870</span> BLAKE2B 3278b46e1a9b81aa1d3146bf53febcaf53724e2d960dbcd69f92efc38f5f5d5013bcc366868cf6f7105207bbb0531b95f5c9f8887183d8fccd132d5248ef1fc8 SHA512 349f094c0a09bd9944f0424b6551e27711c2795ca9624bbc4967af6e5ee3dc95f85b743eda2b5dea4c222d1009b069eacf3ca660b51c198e44d3b9d0cfbff35b
-diff --git a/app-office/wps-office/metadata.xml b/app-office/wps-office/metadata.xml
 ......
 </code></pre></div><p>如果经过测试<strong>没有发现问题</strong>，就可以考虑给分享给大家了。
 如果这个包是在main tree里的，需要经过48小时之后，才能发 bump request，具体是：https://wiki.gentoo.org/wiki/Zero-day_bump_requests
@@ -292,7 +285,7 @@ Date:   Thu Jan <span class=m>20</span> 22:45:40 <span class=m>2022</span> +0800
     app-office/wps-office: add 11.1.0.10702
 ......
 </code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git cherry-pick 4adaa116596ee8f1500ec55f882bb56aa68076d6
-923aeeaa0009f7153237b94c23bb6441f4e45c7-office f92365b96<span class=o>]</span> app-office/wps-office: bump to 11.1.0.10920
+<span class=o>[</span>wps-office 130a38bc4<span class=o>]</span> app-office/wps-office: bump to 11.1.0.10920
  Date: Thu Jan <span class=m>20</span> 22:48:04 <span class=m>2022</span> +0800
  <span class=m>2</span> files changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>5</span> deletions<span class=o>(</span>-<span class=o>)</span>
  rewrite app-office/wps-office/Manifest <span class=o>(</span>100%<span class=o>)</span>
