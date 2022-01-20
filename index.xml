@@ -2,7 +2,7 @@
 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。&lt;/p>
 &lt;p>例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的，其实 &lt;a class="link" href="https://github.com/Universebenzene/benzene-overlay" target="_blank" rel="noopener"
 >天苯的overlay&lt;/a> 里面已经有新版了，假装没看到，（逃&lt;/p>
-&lt;p>因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。&lt;/p>
+&lt;p>因为大家的gentoo-zh overlay的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。&lt;/p>
 &lt;p>在我这里是：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git -C /var/db/repos/gentoo-zh remote -v
 &lt;span class="nb">local&lt;/span> git@github.com:liangyongxiang/gentoo-zh.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
