@@ -1,9 +1,80 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="TINYWM 我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: http://incise.org/tinywm.html。源码如下，我稍微整理一下格式：
-/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005. * * This software is in the public domain * and is provided AS IS, with NO WARRANTY. */ #include &amp;lt;X11/Xlib.h&amp;gt; #define MAX(a, b) ((a) &amp;gt; (b) ? (a) : (b))  int main() { Display * dpy; Window root; XWindowAttributes attr; XButtonEvent start; XEvent ev; if(!(dpy = XOpenDisplay(0x0))) return 1; root = DefaultRootWindow(dpy); XGrabKey(dpy, XKeysymToKeycode(dpy, XStringToKeysym(&amp;#34;F1&amp;#34;)), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync); XGrabButton(dpy, 1, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); XGrabButton(dpy, 3, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); for(;;) { XNextEvent(dpy, &amp;amp;ev); if(ev."><title>WM学习</title><link rel=canonical href=https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="WM学习"><meta property="og:description" content="TINYWM 我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: http://incise.org/tinywm.html。源码如下，我稍微整理一下格式：
-/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005. * * This software is in the public domain * and is provided AS IS, with NO WARRANTY. */ #include &amp;lt;X11/Xlib.h&amp;gt; #define MAX(a, b) ((a) &amp;gt; (b) ? (a) : (b))  int main() { Display * dpy; Window root; XWindowAttributes attr; XButtonEvent start; XEvent ev; if(!(dpy = XOpenDisplay(0x0))) return 1; root = DefaultRootWindow(dpy); XGrabKey(dpy, XKeysymToKeycode(dpy, XStringToKeysym(&amp;#34;F1&amp;#34;)), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync); XGrabButton(dpy, 1, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); XGrabButton(dpy, 3, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); for(;;) { XNextEvent(dpy, &amp;amp;ev); if(ev."><meta property="og:url" content="https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/"><meta property="og:site_name" content="yongxiang"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-01-01T01:39:10+08:00"><meta property="article:modified_time" content="2021-01-01T01:39:10+08:00"><meta name=twitter:title content="WM学习"><meta name=twitter:description content="TINYWM 我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: http://incise.org/tinywm.html。源码如下，我稍微整理一下格式：
-/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005. * * This software is in the public domain * and is provided AS IS, with NO WARRANTY. */ #include &amp;lt;X11/Xlib.h&amp;gt; #define MAX(a, b) ((a) &amp;gt; (b) ? (a) : (b))  int main() { Display * dpy; Window root; XWindowAttributes attr; XButtonEvent start; XEvent ev; if(!(dpy = XOpenDisplay(0x0))) return 1; root = DefaultRootWindow(dpy); XGrabKey(dpy, XKeysymToKeycode(dpy, XStringToKeysym(&amp;#34;F1&amp;#34;)), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync); XGrabButton(dpy, 1, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); XGrabButton(dpy, 3, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); for(;;) { XNextEvent(dpy, &amp;amp;ev); if(ev."></head><body><script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.body.dataset.scheme='dark':document.body.dataset.scheme='light'})()</script><div class="container main-container flex on-phone--column extended article-page with-toolbar"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header class=site-info><figure class=site-avatar><img src=/img/avatar_hudd9a365c29a6708c36ffa7d3faae48a1_171305_300x0_resize_q75_box.jpg width=300 height=200 class=site-logo loading=lazy alt=Avatar></figure><h1 class=site-name><a href=https://liangyongxiang.github.io>yongxiang</a></h1><h2 class=site-description>emerge -e @world</h2></header><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/about><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About</span></a></li><li><a href=/archives><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>暗色模式</span></li></ol></aside><main class="main full-width"><div id=article-toolbar><a href=https://liangyongxiang.github.io class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><article class=main-article><header class=article-header><div class=article-details><h2 class=article-title><a href=/p/wm%E5%AD%A6%E4%B9%A0/>WM学习</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>2021/01/01</time></footer></div></header><section class=article-content><h1 id=tinywm>TINYWM</h1><p>我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。
-不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: <a href=http://incise.org/tinywm.html>http://incise.org/tinywm.html</a>。源码如下，我稍微整理一下格式：</p><div class=highlight><pre class=chroma><code class=language-c data-lang=c><span class=cm>/* TinyWM is written by Nick Welch &lt;mack@incise.org&gt;, 2005.
+<!doctype html><html lang=en>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="TINYWM 我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: http://incise.org/tinywm.html。源码如下，我稍微整理一下格式：
+/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005. * * This software is in the public domain * and is provided AS IS, with NO WARRANTY. */ #include &amp;lt;X11/Xlib.h&amp;gt; #define MAX(a, b) ((a) &amp;gt; (b) ? (a) : (b))  int main() { Display * dpy; Window root; XWindowAttributes attr; XButtonEvent start; XEvent ev; if(!(dpy = XOpenDisplay(0x0))) return 1; root = DefaultRootWindow(dpy); XGrabKey(dpy, XKeysymToKeycode(dpy, XStringToKeysym(&amp;#34;F1&amp;#34;)), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync); XGrabButton(dpy, 1, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); XGrabButton(dpy, 3, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); for(;;) { XNextEvent(dpy, &amp;amp;ev); if(ev."><title>WM学习</title>
+<link rel=canonical href=https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="WM学习">
+<meta property="og:description" content="TINYWM 我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: http://incise.org/tinywm.html。源码如下，我稍微整理一下格式：
+/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005. * * This software is in the public domain * and is provided AS IS, with NO WARRANTY. */ #include &amp;lt;X11/Xlib.h&amp;gt; #define MAX(a, b) ((a) &amp;gt; (b) ? (a) : (b))  int main() { Display * dpy; Window root; XWindowAttributes attr; XButtonEvent start; XEvent ev; if(!(dpy = XOpenDisplay(0x0))) return 1; root = DefaultRootWindow(dpy); XGrabKey(dpy, XKeysymToKeycode(dpy, XStringToKeysym(&amp;#34;F1&amp;#34;)), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync); XGrabButton(dpy, 1, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); XGrabButton(dpy, 3, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); for(;;) { XNextEvent(dpy, &amp;amp;ev); if(ev.">
+<meta property="og:url" content="https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/">
+<meta property="og:site_name" content="yongxiang">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2021-01-01T01:39:10+08:00"><meta property="article:modified_time" content="2021-01-01T01:39:10+08:00">
+<meta name=twitter:title content="WM学习">
+<meta name=twitter:description content="TINYWM 我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: http://incise.org/tinywm.html。源码如下，我稍微整理一下格式：
+/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005. * * This software is in the public domain * and is provided AS IS, with NO WARRANTY. */ #include &amp;lt;X11/Xlib.h&amp;gt; #define MAX(a, b) ((a) &amp;gt; (b) ? (a) : (b))  int main() { Display * dpy; Window root; XWindowAttributes attr; XButtonEvent start; XEvent ev; if(!(dpy = XOpenDisplay(0x0))) return 1; root = DefaultRootWindow(dpy); XGrabKey(dpy, XKeysymToKeycode(dpy, XStringToKeysym(&amp;#34;F1&amp;#34;)), Mod1Mask, root, True, GrabModeAsync, GrabModeAsync); XGrabButton(dpy, 1, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); XGrabButton(dpy, 3, Mod1Mask, root, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, None); for(;;) { XNextEvent(dpy, &amp;amp;ev); if(ev.">
+</head>
+<body>
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.body.dataset.scheme='dark':document.body.dataset.scheme='light'})()</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+<aside class="sidebar left-sidebar sticky">
+<button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box>
+<span class=hamburger-inner></span>
+</span>
+</button>
+<header class=site-info>
+<figure class=site-avatar>
+<img src=/img/avatar_hudd9a365c29a6708c36ffa7d3faae48a1_171305_300x0_resize_q75_box.jpg width=300 height=200 class=site-logo loading=lazy alt=Avatar>
+</figure>
+<h1 class=site-name><a href=https://liangyongxiang.github.io>yongxiang</a></h1>
+<h2 class=site-description>emerge -e @world</h2>
+</header>
+<ol class=menu id=main-menu>
+<li>
+<a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span>
+</a>
+</li>
+<li>
+<a href=/about><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span>
+</a>
+</li>
+<li>
+<a href=/archives><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span>
+</a>
+</li>
+<li>
+<a href=/search><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span>
+</a>
+</li>
+<li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span>
+</li>
+</ol>
+</aside>
+<main class="main full-width">
+<div id=article-toolbar>
+<a href=https://liangyongxiang.github.io class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<h2 class=article-title>
+<a href=/p/wm%E5%AD%A6%E4%B9%A0/>WM学习</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>2021/01/01</time>
+</footer></div>
+</header>
+<section class=article-content>
+<h1 id=tinywm>TINYWM</h1>
+<p>我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。
+不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: <a class=link href=http://incise.org/tinywm.html target=_blank rel=noopener>http://incise.org/tinywm.html</a>。源码如下，我稍微整理一下格式：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=cm>/* TinyWM is written by Nick Welch &lt;mack@incise.org&gt;, 2005.
 </span><span class=cm> *
 </span><span class=cm> * This software is in the public domain
 </span><span class=cm> * and is provided AS IS, with NO WARRANTY. */</span>
@@ -52,11 +123,75 @@
             <span class=n>XUngrabPointer</span><span class=p>(</span><span class=n>dpy</span><span class=p>,</span> <span class=n>CurrentTime</span><span class=p>);</span>
     <span class=p>}</span>
 <span class=p>}</span>
-</code></pre></div><p>Display是Xorg的概念，在archlinux wiki上找到一个简短的解释(<a href=https://wiki.archlinux.org/index.php/Multihead):>https://wiki.archlinux.org/index.php/Multihead):</a></p><blockquote><ul><li>Monitor refers to a physical display device, such as an LCD panel.</li><li>Screen refers to an X-Window screen (that is: a monitor attached to a display).</li><li>Display refers to a collection of screens that are in use at the same time showing
-parts of a single desktop (you can drag windows among all screens in a single display).</li></ul></blockquote><p>TODO</p></section><footer class=article-footer></footer></article><aside class=related-contents--wrapper></aside><script src=https://utteranc.es/client.js repo=liangyongxiang/liangyongxiang.github.io issue-term=pathname crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>function setUtterancesTheme(b){let a=document.querySelector('.utterances iframe');a&&a.contentWindow.postMessage({type:'set-theme',theme:`github-${b}`},'https://utteranc.es')}addEventListener('message',a=>{if(a.origin!=='https://utteranc.es')return;setUtterancesTheme(document.body.dataset.scheme)}),window.addEventListener('onColorSchemeChange',a=>{setUtterancesTheme(a.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+</code></pre></div><p>Display是Xorg的概念，在archlinux wiki上找到一个简短的解释(<a class=link href=https://wiki.archlinux.org/index.php/Multihead%29 target=_blank rel=noopener>https://wiki.archlinux.org/index.php/Multihead)</a>:</p>
+<blockquote>
+<ul>
+<li>Monitor refers to a physical display device, such as an LCD panel.</li>
+<li>Screen refers to an X-Window screen (that is: a monitor attached to a display).</li>
+<li>Display refers to a collection of screens that are in use at the same time showing
+parts of a single desktop (you can drag windows among all screens in a single display).</li>
+</ul>
+</blockquote>
+<p>TODO</p>
+</section>
+<footer class=article-footer>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<script src=https://utteranc.es/client.js repo=liangyongxiang/liangyongxiang.github.io issue-term=pathname crossorigin=anonymous async></script>
+<style>.utterances{max-width:unset}</style>
+<script>function setUtterancesTheme(b){let a=document.querySelector('.utterances iframe');a&&a.contentWindow.postMessage({type:'set-theme',theme:`github-${b}`},'https://utteranc.es')}addEventListener('message',a=>{if(a.origin!=='https://utteranc.es')return;setUtterancesTheme(document.body.dataset.scheme)}),window.addEventListener('onColorSchemeChange',a=>{setUtterancesTheme(a.detail)})</script>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
 2020 -
-2021 yongxiang</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 yongxiang
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script></body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

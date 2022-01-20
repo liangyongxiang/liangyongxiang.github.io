@@ -1,99 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>yongxiang</title><link>https://liangyongxiang.github.io/</link><description>Recent content on yongxiang</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 03 Jul 2021 16:21:08 +0800</lastBuildDate><atom:link href="https://liangyongxiang.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>我的Gentoo总结</title><link>https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/</link><pubDate>Sat, 03 Jul 2021 16:21:08 +0800</pubDate><guid>https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/</guid><description>&lt;h1 id="gentoo-wiki">Gentoo Wiki&lt;/h1>
-&lt;p>如果想了解具体某些package的使用，可以搜索 &amp;ldquo;gentoo wiki keyword&amp;rdquo;，例如 &lt;a class="link" href="https://www.google.com/search?q=gentoo&amp;#43;wiki&amp;#43;steam" target="_blank" rel="noopener"
->gentoo wiki steam&lt;/a>：&lt;/p>
-&lt;p>&lt;figure style="flex-grow: 147; flex-basis: 353px">
-&lt;a href="https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam.png" data-size="1721x1169">&lt;img src="https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam.png"
-srcset="https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam_huafa04af3db5f171b50c3cf2989e0d593_171018_480x0_resize_box_2.png 480w, https://liangyongxiang.github.io/p/%E6%88%91%E7%9A%84gentoo%E6%80%BB%E7%BB%93/gentoo-wiki-steam_huafa04af3db5f171b50c3cf2989e0d593_171018_1024x0_resize_box_2.png 1024w"
-width="1721"
-height="1169"
-loading="lazy"
-alt="gentoo-wiki-steam">
-&lt;/a>
-&lt;figcaption>gentoo-wiki-steam&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;h1 id="portage">Portage&lt;/h1>
-&lt;p>&lt;a class="link" href="https://wiki.gentoo.org/wiki/Portage" target="_blank" rel="noopener"
->官方wiki&lt;/a>
-&lt;a class="link" href="https://wiki.gentoo.org/wiki//etc/portage" target="_blank" rel="noopener"
->配置文件&lt;/a>&lt;/p>
-&lt;h1 id="portage-utils">Portage utils&lt;/h1>
-&lt;p>Portage还有很多辅助小工具，包括： &lt;a class="link" href="https://wiki.gentoo.org/wiki/Useful_Portage_tools" target="_blank" rel="noopener"
->Portage utils&lt;/a>&lt;/p>
-&lt;h1 id="report-bugs">Report Bugs&lt;/h1>
-&lt;h2 id="emerge-出错">emerge 出错&lt;/h2>
-&lt;p>查看错误是哪个stage&lt;/p>
-&lt;h2 id="在gentoo-zh报bug">在gentoo-zh报bug&lt;/h2>
-&lt;p>&lt;a class="link" href="https://github.com/microcai/gentoo-zh/issues" target="_blank" rel="noopener"
->issues&lt;/a>&lt;/p>
-&lt;h2 id="在gentoo报bug">在gentoo报bug&lt;/h2>
-&lt;ul>
-&lt;li>注册账户 &lt;a class="link" href="https://bugs.gentoo.org/" target="_blank" rel="noopener"
->bugs&lt;/a>&lt;/li>
-&lt;li>检查是否已经有重复的bug：
-&lt;ul>
-&lt;li>todo：截图&lt;/li>
-&lt;li>cc to me&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>正确的bug的标题：
-&lt;ul>
-&lt;li>title: format
-&lt;ul>
-&lt;li>categoriy/package: first-error&lt;/li>
-&lt;li>categoriy/package[use]: first-error&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>ebuild.log的权限问题&lt;/li>
-&lt;li>emerge &amp;ndash;info&lt;/li>
-&lt;/ul>
-&lt;h1 id="熟悉ebuild打包">熟悉ebuild打包&lt;/h1>
-&lt;ul>
-&lt;li>
-&lt;p>建立自己的overlay用来实验:
-&lt;a href="https://wiki.gentoo.org/wiki/Custom_ebuild_repository">https://wiki.gentoo.org/wiki/Custom_ebuild_repository&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>ebuild命令学习&lt;/p>
-&lt;ul>
-&lt;li>user account&lt;/li>
-&lt;li>EBuild xxx.EBuild help&lt;/li>
-&lt;li>EBuild xxx.EBuild clean install&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>PORTAGE_TMPDIR目录介绍&lt;/p>
-&lt;ul>
-&lt;li>build-info&lt;/li>
-&lt;li>distdir&lt;/li>
-&lt;li>homedir&lt;/li>
-&lt;li>image&lt;/li>
-&lt;li>temp&lt;/li>
-&lt;li>work&lt;/li>
-&lt;li>environment file&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>stage介绍&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h1 id="ebuild-write">EBuild Write&lt;/h1>
-&lt;h2 id="devmanual">devmanual&lt;/h2>
-&lt;ul>
-&lt;li>练习: &lt;a href="https://devmanual.gentoo.org/quickstart/index.html">https://devmanual.gentoo.org/quickstart/index.html&lt;/a>&lt;/li>
-&lt;li>概念: &lt;a href="https://devmanual.gentoo.org/general-concepts/index.html">https://devmanual.gentoo.org/general-concepts/index.html&lt;/a>&lt;/li>
-&lt;li>编写：https://devmanual.gentoo.org/ebuild-writing/index.html&lt;/li>
-&lt;/ul>
-&lt;h2 id="使用repoman">使用repoman&lt;/h2>
-&lt;ul>
-&lt;li>repoman manifest&lt;/li>
-&lt;li>repoman -dx full&lt;/li>
-&lt;li>repoman -dx commit (or git)&lt;/li>
-&lt;/ul></description></item><item><title>WM学习</title><link>https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/</link><pubDate>Fri, 01 Jan 2021 01:39:10 +0800</pubDate><guid>https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/</guid><description>&lt;h1 id="tinywm">TINYWM&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>yongxiang</title><link>https://liangyongxiang.github.io/</link><description>Recent content on yongxiang</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 28 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://liangyongxiang.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>WM学习</title><link>https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/</link><pubDate>Fri, 01 Jan 2021 01:39:10 +0800</pubDate><guid>https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/</guid><description>&lt;h1 id="tinywm">TINYWM&lt;/h1>
 &lt;p>我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。
-不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: &lt;a href="http://incise.org/tinywm.html">http://incise.org/tinywm.html&lt;/a>。源码如下，我稍微整理一下格式：&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="cm">/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005.
+不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: &lt;a class="link" href="http://incise.org/tinywm.html" target="_blank" rel="noopener"
+>http://incise.org/tinywm.html&lt;/a>。源码如下，我稍微整理一下格式：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="cm">/* TinyWM is written by Nick Welch &amp;lt;mack@incise.org&amp;gt;, 2005.
 &lt;/span>&lt;span class="cm"> *
 &lt;/span>&lt;span class="cm"> * This software is in the public domain
 &lt;/span>&lt;span class="cm"> * and is provided AS IS, with NO WARRANTY. */&lt;/span>
@@ -137,7 +46,8 @@ alt="gentoo-wiki-steam">
 &lt;span class="n">XUngrabPointer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dpy&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">CurrentTime&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Display是Xorg的概念，在archlinux wiki上找到一个简短的解释(&lt;a href="https://wiki.archlinux.org/index.php/Multihead):">https://wiki.archlinux.org/index.php/Multihead):&lt;/a>&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Display是Xorg的概念，在archlinux wiki上找到一个简短的解释(&lt;a class="link" href="https://wiki.archlinux.org/index.php/Multihead%29" target="_blank" rel="noopener"
+>https://wiki.archlinux.org/index.php/Multihead)&lt;/a>:&lt;/p>
 &lt;blockquote>
 &lt;ul>
 &lt;li>Monitor refers to a physical display device, such as an LCD panel.&lt;/li>
