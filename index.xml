@@ -161,6 +161,7 @@ origin git@github.com:liangyongxiang/gentoo-zh.git &lt;span class="o">(&lt;/span
 upstream https://github.com/microcai/gentoo-zh.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
 upstream https://github.com/microcai/gentoo-zh.git &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="摘取提交">摘取提交&lt;/h3>
+&lt;p>拉去远程最新的修改，然后创建一个新的分支来提交，这里的分支名是wps-offic&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git fetch upstream
 $ git checkout -b wps-office upstream/master
 $ git fetch &lt;span class="nb">local&lt;/span>
