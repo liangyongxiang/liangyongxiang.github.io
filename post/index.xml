@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on yongxiang</title><link>https://liangyongxiang.github.io/post/</link><description>Recent content in Posts on yongxiang</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 20:56:56 +0800</lastBuildDate><atom:link href="https://liangyongxiang.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Gentoo Bump</title><link>https://liangyongxiang.github.io/p/gentoo-bump/</link><pubDate>Thu, 20 Jan 2022 20:56:56 +0800</pubDate><guid>https://liangyongxiang.github.io/p/gentoo-bump/</guid><description>在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。
-例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。
+例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的，其实 天苯的overlay 里面已经有新版了，假装没看到，（逃
 因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。
 在我这里是：
 $ git -C /var/db/repos/gentoo-zh remote -v local git@github.com:liangyongxiang/gentoo-zh.git (fetch) local git@github.com:liangyongxiang/gentoo-zh.git (push) origin git@github.com:microcai/gentoo-zh.git (fetch) origin git@github.com:microcai/gentoo-zh.git (push) 如果你使用的是非mirror的仓库，在想给gentoo-zh发pr的时候，也可以直接在里面修改。
