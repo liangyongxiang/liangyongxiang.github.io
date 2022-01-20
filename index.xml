@@ -1,69 +1,74 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>yongxiang</title><link>https://liangyongxiang.github.io/</link><description>Recent content on yongxiang</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 20:56:56 +0800</lastBuildDate><atom:link href="https://liangyongxiang.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Gentoo Bump</title><link>https://liangyongxiang.github.io/p/gentoo-bump/</link><pubDate>Thu, 20 Jan 2022 20:56:56 +0800</pubDate><guid>https://liangyongxiang.github.io/p/gentoo-bump/</guid><description>&lt;p>在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。
-这时候推荐自己亲自动手上，bump到新的版本真的非常容易。&lt;/p>
-&lt;p>例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的，其实 &lt;a class="link" href="https://github.com/Universebenzene/benzene-overlay" target="_blank" rel="noopener"
->天苯的overlay&lt;/a> 里面已经有新版了，假装没看到，（逃&lt;/p>
-&lt;p>因为大家的gentoo-zh overlay的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。&lt;/p>
-&lt;p>在我这里是：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git -C /var/db/repos/gentoo-zh remote -v
-&lt;span class="nb">local&lt;/span> git@github.com:liangyongxiang/gentoo-zh.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
-&lt;span class="nb">local&lt;/span> git@github.com:liangyongxiang/gentoo-zh.git &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
-origin git@github.com:microcai/gentoo-zh.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
-origin git@github.com:microcai/gentoo-zh.git &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果你使用的是非mirror的仓库，在想给gentoo-zh发pr的时候，也可以直接在里面修改。&lt;/p>
-&lt;p>不过我先介绍更通用的方式，即先在自己的overlay里bump并且测试好，然后才在gentoo-zh里提交发pull request&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>yongxiang</title><link>https://liangyongxiang.github.io/</link><description>Recent content on yongxiang</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 20:56:56 +0800</lastBuildDate><atom:link href="https://liangyongxiang.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Gentoo Version Bump</title><link>https://liangyongxiang.github.io/p/gentoo-version-bump/</link><pubDate>Thu, 20 Jan 2022 20:56:56 +0800</pubDate><guid>https://liangyongxiang.github.io/p/gentoo-version-bump/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还没更新，心痒难耐。
+这时候推荐自己亲自动手上，bump(升级)到新的版本真的非常容易。&lt;/p>
+&lt;p>例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的，其实&lt;a class="link" href="https://github.com/Universebenzene/benzene-overlay" target="_blank" rel="noopener"
+>天苯的overlay&lt;/a>里面已经有新版了，假装没看到，（逃&lt;/p>
+&lt;p>我们可以在自己本地的overlay里面bump到新版本之后测试，如果没有问题，就可以向维护者提出bump 请求（gentoo主仓库常见做法），或者自己发pull request到对于的git仓库（overlay常见做法）。&lt;/p>
+&lt;p>在gentoo主仓库发version bump请求是在 &lt;a class="link" href="https://bugs.gentoo.org" target="_blank" rel="noopener"
+>https://bugs.gentoo.org&lt;/a> ，所以需要提前注册一个帐号，发version bump的时候还需要避免&amp;quot;Zero day bump request&amp;quot;，具体是&lt;strong>至少&lt;/strong>要等48小时之后才能发bump request，相关Wiki：https://wiki.gentoo.org/wiki/Zero-day_bump_requests。&lt;/p>
+&lt;p>这是一个version bump的例子: &lt;a class="link" href="https://bugs.gentoo.org/696514" target="_blank" rel="noopener"
+>app-editors/le: version bump&lt;/a>。&lt;/p>
+&lt;p>在gentoo-zh，更推荐的方式是直接发version bump的pull request。这个需要提前注册好Github帐号，并且fork &lt;a class="link" href="https://github.com/microcai/gentoo-zh.git" target="_blank" rel="noopener"
+>gentoo-zh仓库&lt;/a>，如果以前已经fork过，不需要额外操作（即不用删除重新fork）&lt;/p>
+&lt;h1 id="overlay-version-bump">overlay version bump&lt;/h1>
+&lt;p>因为大家添加gentoo-zh overlay的地址不一定一样，有的喜欢直接使用开发的git仓库(&lt;a class="link" href="https://github.com/microcai/gentoo-zh.git" target="_blank" rel="noopener"
+>https://github.com/microcai/gentoo-zh.git&lt;/a>)，有的喜欢使用gentoo-mirror(&lt;a class="link" href="https://github.com/gentoo-mirror/gentoo-zh.git" target="_blank" rel="noopener"
+>https://github.com/gentoo-mirror/gentoo-zh.git&lt;/a>)的仓库。如果使用的是开发仓库，可以直接在上面修改。如果使用的是gentoo-mirror就建议在自己的本地overlay先bump。&lt;/p>
+&lt;p>这里我先介绍，如何在自己的本地overlay里version bump并且测试好，然后才在复制commit到 gentoo-zh 仓库，最后提交发pull request。&lt;/p>
 &lt;h1 id="在自己的overlay里bump测试">在自己的overlay里bump测试&lt;/h1>
+&lt;p>步骤：&lt;/p>
 &lt;ol>
-&lt;li>需要有自己的overlay&lt;/li>
-&lt;li>复制已有的ebuild到自己的overly&lt;/li>
-&lt;li>安装运行测试&lt;/li>
-&lt;li>提交修改&lt;/li>
+&lt;li>建立自己的本地overlay（只需一次，以后bump新的包不需要再来一次）&lt;/li>
+&lt;li>复制已有的ebuild到自己的overly，如果已经有同名的包，建议先删除&lt;/li>
+&lt;li>bump到新版本，编译安装运行测试&lt;/li>
+&lt;li>测试通过之后，可以提交修改到gentoo-zh。如果测试没过，直接git还原修改即可&lt;/li>
 &lt;/ol>
 &lt;h2 id="自定义overlay">自定义overlay&lt;/h2>
-&lt;p>如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。&lt;/p>
-&lt;p>简单来说就是：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># eselect repository create local # 自定义本地overlay&lt;/span>
-root &lt;span class="c1"># cd /var/db/repos/local/ &lt;/span>
-root &lt;span class="c1"># git init # 使用git管理自己的overlay，非必须但是强烈推荐&lt;/span>
-root &lt;span class="c1"># git add . &lt;/span>
-root &lt;span class="c1"># git commit -m &amp;#39;create overlay&amp;#39;&lt;/span>
+&lt;p>如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。
+特权操作我使用的是doas，可以替换成sudo或者切换到root用户操作。
+简单来说就是：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ doas eselect repository create &lt;span class="nb">local&lt;/span> &lt;span class="c1"># 自定义本地overlay&lt;/span>
+$ &lt;span class="nb">cd&lt;/span> /var/db/repos/local/
+$ doas git init &lt;span class="c1"># 使用git管理自己的overlay&lt;/span>
+$ doas git add .
+$ doas git commit -m &lt;span class="s1">&amp;#39;create overlay&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="复制想要bump的ebuild到你的overlay">复制想要bump的ebuild到你的overlay&lt;/h2>
-&lt;p>这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11.1.0.10702，最新版本是11.1.0.10920：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># mkdir -p /var/db/repos/local/app-office/wps-office&lt;/span>
-root &lt;span class="c1"># cp -r /var/db/repos/gentoo-zh/app-office/wps-office/* /var/db/repos/local/app-office/wps-office&lt;/span>
-root &lt;span class="c1"># cd /var/db/repos/local/app-office/wps-office&lt;/span>
-root &lt;span class="c1"># git add .&lt;/span>
+&lt;p>这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11.1.0.10702，最新版本是11.1.0.10920。wps的完整包名是 app-office/wps-office：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ doas rm -rf /var/db/repos/local/app-office/wps-office
+$ doas mkdir -p /var/db/repos/local/app-office/wps-office
+$ doas cp -r /var/db/repos/gentoo-zh/app-office/wps-office/* /var/db/repos/local/app-office/wps-office
+$ &lt;span class="nb">cd&lt;/span> /var/db/repos/local/app-office/wps-office
+/var/db/repos/local/app-office/wps-office $ doas git add .
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>这时候确认一下local overlay的状态：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># cd /var/db/repos/local/app-office/wps-office&lt;/span>
-root &lt;span class="c1"># git status&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ git status
 On branch master
 Changes to be committed:
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to unstage&lt;span class="o">)&lt;/span>
 new file: app-office/wps-office/Manifest
 new file: app-office/wps-office/metadata.xml
 new file: app-office/wps-office/wps-office-11.1.0.10702.ebuild
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>提交修改：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git commit -m &amp;#39;app-office/wps-office: add 11.1.0.10702&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>在这里commit不要省略掉，这也是cherry-pick成功不冲突的关键。&lt;/p>
-&lt;p>如果需要保留旧版的时候：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># cp wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild&lt;/span>
-root &lt;span class="c1"># git add wps-office-11.1.0.10920.ebuild&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>提交修改，这个commit是后面cherry-pick不遇到冲突的关键。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ doas git commit -m &lt;span class="s1">&amp;#39;app-office/wps-office: add 11.1.0.10702&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果需要保留旧版的时候：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ doas cp wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild
+/var/db/repos/local/app-office/wps-office $ doas git add wps-office-11.1.0.10920.ebuild
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不需要保留原版的时候：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git mv wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ doas git mv wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>这里我们选择不保留旧版，查看local overlay的状态：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git status&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ git status
 On branch master
 Changes to be committed:
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to unstage&lt;span class="o">)&lt;/span>
 renamed: wps-office-11.1.0.10702.ebuild -&amp;gt; wps-office-11.1.0.10920.ebuild
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>由于我们升级到新的版本需要下载新版本的distfile（可能是源码或者二进制包），这时候需要更新manifest文件。&lt;/p>
 &lt;p>更新manifest文件可以通过ebuild/repoman等等命令，这里使用的是repoman：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># repoman manifest&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ doas repoman manifest
 &amp;gt;&amp;gt;&amp;gt; Downloading &lt;span class="s1">&amp;#39;https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/10920/wps-office_11.1.0.10920_amd64.deb&amp;#39;&lt;/span>
 /var/cache/distfiles/wps-office_11. 100%&lt;span class="o">[==================================================================&lt;/span>&amp;gt;&lt;span class="o">]&lt;/span> 351.76M 28.7MB/s in 12s
 ...... &lt;span class="c1"># 删除部分log&lt;/span>
 &amp;gt;&amp;gt;&amp;gt; Creating Manifest &lt;span class="k">for&lt;/span> /var/db/repos/local/app-office/wps-office
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>这时候去看看local overlay的状态：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git status&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ git status
 On branch master
 Changes to be committed:
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to unstage&lt;span class="o">)&lt;/span>
@@ -72,35 +77,38 @@ Changes not staged &lt;span class="k">for&lt;/span> commit:
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git add &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to update what will be committed&lt;span class="o">)&lt;/span>
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git restore &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to discard changes in working directory&lt;span class="o">)&lt;/span>
 modified: Manifest
-root &lt;span class="c1"># cat Manifest&lt;/span>
+/var/db/repos/local/app-office/wps-office $ cat Manifest
 DIST wps-office_11.1.0.10920_amd64.deb &lt;span class="m">368846078&lt;/span> BLAKE2B b33f6849244b658c65003501fae8b6ac4ce9f51131e96a380e055df9278bda26618f98aff7cf52e354570f6c9c82b31010eaf6765e7ef161b6e10747b08044b2 SHA512 15d8540cd4aa1efcdfd90c1ac69fee7298caf510edd45f9558fab5075d111e6458d07aea0c06dadde8b56d001177ab2447bcfee4177400938db6f56cc7d23e6f
 DIST wps-office_11.1.0.10920_arm64.deb &lt;span class="m">327865640&lt;/span> BLAKE2B 665139ded95a017d7ed1bfcc7de5b19d46c5b08e2a905695da86e2358f652f3a20046cafab7626b6014b040c894e112306783fc956d22882906d7ebfa964f5c3 SHA512 b7dca412b337872acc70be028cddae38ff0e0902f5683d1520b56753f0bb48e35644166f7311cd0c03819a3cd9be125d41ec50e3876405a2ebbed1eef050f9d6
 DIST wps-office_11.1.0.10920_mips64el.deb &lt;span class="m">324211870&lt;/span> BLAKE2B 3278b46e1a9b81aa1d3146bf53febcaf53724e2d960dbcd69f92efc38f5f5d5013bcc366868cf6f7105207bbb0531b95f5c9f8887183d8fccd132d5248ef1fc8 SHA512 349f094c0a09bd9944f0424b6551e27711c2795ca9624bbc4967af6e5ee3dc95f85b743eda2b5dea4c222d1009b069eacf3ca660b51c198e44d3b9d0cfbff35b
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>添加修改之后的manifest文件:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git add Manifest&lt;/span>
-root &lt;span class="c1"># git status&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ doas git add Manifest
+/var/db/repos/local/app-office/wps-office $ git status
 On branch master
 Changes to be committed:
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span> to unstage&lt;span class="o">)&lt;/span>
 new file: Manifest
 renamed: wps-office-11.1.0.10702.ebuild -&amp;gt; wps-office-11.1.0.10920.ebuild
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装运行测试">安装运行测试&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># emerge -av app-office/wps-office&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ doas emerge -av app-office/wps-office
 These are the packages that would be merged, in order:
 Calculating dependencies... &lt;span class="k">done&lt;/span>!
 &lt;span class="o">[&lt;/span>ebuild N &lt;span class="o">]&lt;/span> app-office/wps-office-11.1.0.10920::local &lt;span class="nv">USE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;systemd (-big-endian)&amp;#34;&lt;/span> &lt;span class="m">0&lt;/span> KiB
 Total: &lt;span class="m">1&lt;/span> package &lt;span class="o">(&lt;/span>&lt;span class="m">1&lt;/span> new&lt;span class="o">)&lt;/span>, Size of downloads: &lt;span class="m">0&lt;/span> KiB
 Would you like to merge these packages? &lt;span class="o">[&lt;/span>Yes/No&lt;span class="o">]&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>回车之后就升级好了，接下来就是具体运行测试了。在运行测试如果没有发现问题，我们就可以完成bump的后续工作了&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># repoman -dfx&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>回车之后等emerge运行完成，如果中途遇到错误，例如编译错误之类的，在这个包不能顺利bump上去的时候，建议等包维护来处理。
+如果emerge正常安装完成，接下来就是具体运行测试了。如果在运行测试也没有发现问题，我们就可以继续完成bump的后续工作了&lt;/p>
+&lt;p>通常建议在本地使用repoman或者pkgchek/pkgscan等等工具检查是否会有已知的问题：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">/var/db/repos/local/app-office/wps-office $ repoman -dfx
 RepoMan scours the neighborhood...
 ebuild.badheader &lt;span class="m">1&lt;/span>
 app-office/wps-office/wps-office-11.1.0.10920.ebuild: line 1: Invalid Copyright
 RepoMan sez: &lt;span class="s2">&amp;#34;You&amp;#39;re only giving me a partial QA payment?
 &lt;/span>&lt;span class="s2"> I&amp;#39;ll take it this time, but I&amp;#39;m not happy.&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里检查只发现一个Copyright的小问题，是因为这个包上次更新是2021年的，现在是2022年了。由于repoman的commit会帮忙修改，所以这里可以忽略&lt;/p>
-&lt;p>然后我们开始提交，这里也可以使用&lt;code>git commit -m 'xxx/xxx: xxx'&lt;/code>，repoman commit底层也是调用git commit，但是会做更多的检查，所以推荐使用。&lt;/p>
-&lt;pre tabindex="0">&lt;code>root # repoman commit -m 'app-office/wps-office: bump to 11.1.0.10920'
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里检查只发现一个Copyright的小问题，是因为这个包上次更新是2021年的，现在是2022年了。由于repoman的commit会帮忙修改，所以这里可以忽略。&lt;/p>
+&lt;p>然后我们开始提交，这里也可以使用&lt;code>git commit -m 'xxx/xxx: xxx'&lt;/code>，repoman commit底层也是调用git commit，但是会做更多的检查，所以推荐使用。
+version bump commit的消息格式通常是 &amp;ldquo;&lt;!-- raw HTML omitted -->/&lt;!-- raw HTML omitted -->: bump to 11.1.0&amp;rdquo;&lt;/p>
+&lt;pre tabindex="0">&lt;code>/var/db/repos/local/app-office/wps-office $ doas repoman commit -m 'app-office/wps-office: bump to 11.1.0.10920'
 RepoMan scours the neighborhood...
 &amp;gt;&amp;gt;&amp;gt; Creating Manifest for /var/db/repos/local/app-office/wps-office
 Note: use --include-dev (-d) to check dependencies for 'dev' profiles
@@ -108,7 +116,7 @@ Note: use --include-dev (-d) to check dependencies for 'dev' profiles
 Commit complete.
 RepoMan sez: &amp;quot;If everyone were like you, I'd be out of business!&amp;quot;
 &lt;/code>&lt;/pre>&lt;p>检查我们的提交：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">root &lt;span class="c1"># git show&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git show
 commit 4adaa116596ee8f1500ec55f882bb56aa68076d6 &lt;span class="o">(&lt;/span>HEAD -&amp;gt; master&lt;span class="o">)&lt;/span>
 Author: Yongxiang Liang &amp;lt;tanekliang@gmail.com&amp;gt;
 Date: Thu Jan &lt;span class="m">20&lt;/span> 22:48:04 &lt;span class="m">2022&lt;/span> +0800
@@ -126,47 +134,46 @@ index 49bda6e49..5aafb1e82 &lt;span class="m">100644&lt;/span>
 +DIST wps-office_11.1.0.10920_amd64.deb &lt;span class="m">368846078&lt;/span> BLAKE2B b33f6849244b658c65003501fae8b6ac4ce9f51131e96a380e055df9278bda26618f98aff7cf52e354570f6c9c82b31010eaf6765e7ef161b6e10747b08044b2 SHA512 15d8540cd4aa1efcdfd90c1ac69fee7298caf510edd45f9558fab5075d111e6458d07aea0c06dadde8b56d001177ab2447bcfee4177400938db6f56cc7d23e6f
 +DIST wps-office_11.1.0.10920_arm64.deb &lt;span class="m">327865640&lt;/span> BLAKE2B 665139ded95a017d7ed1bfcc7de5b19d46c5b08e2a905695da86e2358f652f3a20046cafab7626b6014b040c894e112306783fc956d22882906d7ebfa964f5c3 SHA512 b7dca412b337872acc70be028cddae38ff0e0902f5683d1520b56753f0bb48e35644166f7311cd0c03819a3cd9be125d41ec50e3876405a2ebbed1eef050f9d6
 ......
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果经过测试&lt;strong>没有发现问题&lt;/strong>，就可以考虑给分享给大家了。
-如果这个包是在main tree里的，需要经过48小时之后，才能发 bump request，具体是：https://wiki.gentoo.org/wiki/Zero-day_bump_requests
-如果这个包是在gentoo-zh，通常不会强制要求48小时，也非常欢迎有小伙伴直接发pull request。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果这个包是在gentoo-zh，也非常欢迎有小伙伴直接发pull request到 gentoo-zh&lt;/p>
 &lt;h1 id="fork-gentoo-zh然后提pr">fork gentoo-zh然后提pr&lt;/h1>
-&lt;p>在bump好了wps-office之后，可以给gentoo-zh提交pr，这里的流程是：&lt;/p>
+&lt;p>给gentoo-zh提交pull request的流程是：&lt;/p>
 &lt;ol>
-&lt;li>注册github帐号，fork gentoo-zh（具体过程略）&lt;/li>
-&lt;li>clone gentoo-zh，添加需要的remote&lt;/li>
-&lt;li>拉取gentoo-zh最新的修改&lt;/li>
-&lt;li>复制local overlay的修改过来&lt;/li>
+&lt;li>注册github帐号，fork gentoo-zh（以后新的pull request不需要重复，仅需一次）&lt;/li>
+&lt;li>在本地clone gentoo-zh仓库，添加需要的remote （以后新的pull request不需要重复，仅需一次）&lt;/li>
+&lt;li>拉取gentoo-zh和local overlay最新的修改&lt;/li>
+&lt;li>使用git cherry-pick“&amp;ldquo;复制&amp;rdquo; local overlay的commit到本地gentoo-zh仓库&lt;/li>
 &lt;li>在github里发起pull request&lt;/li>
 &lt;/ol>
-&lt;h2 id="clone-gentoo-zh">clone gentoo-zh&lt;/h2>
+&lt;h2 id="复制提交到gentoo-zh并且pull-request">复制提交到gentoo-zh并且pull request&lt;/h2>
 &lt;p>这里涉及到四个仓库：&lt;/p>
 &lt;ol>
 &lt;li>本地的local overlay仓库， 地址是 /var/db/repos/local&lt;/li>
-&lt;li>新建立的本地gentoo-zh仓库, 地址是 ~/gentoo-zh&lt;/li>
-&lt;li>microcai/gentoo-zh仓库, 地址是 &lt;a class="link" href="https://github.com/microcai/gentoo-zh.git" target="_blank" rel="noopener"
+&lt;li>本地gentoo-zh仓库, 这里地址是 ~/gentoo-zh，也可以根据自己的喜欢调整&lt;/li>
+&lt;li>远程microcai/gentoo-zh仓库, 地址是 &lt;a class="link" href="https://github.com/microcai/gentoo-zh.git" target="_blank" rel="noopener"
 >https://github.com/microcai/gentoo-zh.git&lt;/a>&lt;/li>
-&lt;li>fork的仓库，这里是liangyongxiang/gentoo-zh，地址是：git@github.com:liangyongxiang/gentoo-zh.git
-选择https还是ssh地址根据个人喜欢即可&lt;/li>
+&lt;li>自己fork的远程仓库，这里是liangyongxiang/gentoo-zh，地址是：git@github.com:liangyongxiang/gentoo-zh.git&lt;/li>
 &lt;/ol>
+&lt;p>选择https还是ssh地址根据个人喜欢即可。&lt;/p>
 &lt;h3 id="准备工作">准备工作&lt;/h3>
-&lt;p>这里的演示都是在~/gentoo-zh里，首先clone自己的远程仓库，这个步骤仅仅在后续bump其他包不需要做。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git clone git@github.com:liangyongxiang/gentoo-zh.git ~/gentoo-zh
-$ git remote add upstream https://github.com/microcai/gentoo-zh.git
-$ git remote add &lt;span class="nb">local&lt;/span> /var/db/repos/local
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看状态：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">local&lt;/span> /var/db/repos/local &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
+&lt;p>首先clone自己的远程仓库，这个步骤仅仅在后续bump其他包不需要做。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git clone git@github.com:liangyongxiang/gentoo-zh.git ~/gentoo-zh
+~/gentoo-zh $ git remote add upstream https://github.com/microcai/gentoo-zh.git
+~/gentoo-zh $ git remote add &lt;span class="nb">local&lt;/span> /var/db/repos/local
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看仓库状态：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git status
+&lt;span class="nb">local&lt;/span> /var/db/repos/local &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
 &lt;span class="nb">local&lt;/span> /var/db/repos/local &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
 origin git@github.com:liangyongxiang/gentoo-zh.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
 origin git@github.com:liangyongxiang/gentoo-zh.git &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
 upstream https://github.com/microcai/gentoo-zh.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
 upstream https://github.com/microcai/gentoo-zh.git &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="摘取提交">摘取提交&lt;/h3>
-&lt;p>拉去远程最新的修改，然后创建一个新的分支来提交，这里的分支名是wps-offic&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git fetch upstream
-$ git checkout -b wps-office upstream/master
-$ git fetch &lt;span class="nb">local&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看状态：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git log local/master
+&lt;p>拉取远程microcai/gentoo-zh仓库的最新的修改，然后基于远程仓库的master分支创建一个新的分支来处理提交，这里的分支名是wps-office：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git fetch upstream
+~/gentoo-zh $ git fetch &lt;span class="nb">local&lt;/span>
+~/gentoo-zh $ git checkout -b wps-office upstream/master
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看仓库状态，可以看到这里有刚刚在local overlay里的提交：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git log local/master
 commit 4adaa116596ee8f1500ec55f882bb56aa68076d6 &lt;span class="o">(&lt;/span>local/master&lt;span class="o">)&lt;/span>
 Author: Yongxiang Liang &amp;lt;tanekliang@gmail.com&amp;gt;
 Date: Thu Jan &lt;span class="m">20&lt;/span> 22:48:04 &lt;span class="m">2022&lt;/span> +0800
@@ -178,21 +185,22 @@ Author: Yongxiang Liang &amp;lt;tanekliang@gmail.com&amp;gt;
 Date: Thu Jan &lt;span class="m">20&lt;/span> 22:45:40 &lt;span class="m">2022&lt;/span> +0800
 app-office/wps-office: add 11.1.0.10702
 ......
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里也可以将local overlay的commit操作重复一遍，当然还有更聪明的办法，即使用cherry-pick来复制之前local overlay的commit：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git cherry-pick 4adaa116596ee8f1500ec55f882bb56aa68076d6
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>一个比较笨的办法是将local overlay的commit操作重复一遍。
+这是使用的是更加省事的方式，即使用git cherry-pick来复制之前local overlay的commit，我们需要摘取的是最后一个提交 4adaa116596ee8f1500ec55f882bb56aa68076d6，如果有多个提交想要摘取可以使用 &lt;code>git cherry-pick A^..B&lt;/code> (包括A在内的到B的提交），参考：https://stackoverflow.com/questions/1670970/how-to-cherry-pick-multiple-commits&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git cherry-pick 4adaa116596ee8f1500ec55f882bb56aa68076d6
 &lt;span class="o">[&lt;/span>wps-office 130a38bc4&lt;span class="o">]&lt;/span> app-office/wps-office: bump to 11.1.0.10920
 Date: Thu Jan &lt;span class="m">20&lt;/span> 22:48:04 &lt;span class="m">2022&lt;/span> +0800
 &lt;span class="m">2&lt;/span> files changed, &lt;span class="m">5&lt;/span> insertions&lt;span class="o">(&lt;/span>+&lt;span class="o">)&lt;/span>, &lt;span class="m">5&lt;/span> deletions&lt;span class="o">(&lt;/span>-&lt;span class="o">)&lt;/span>
 rewrite app-office/wps-office/Manifest &lt;span class="o">(&lt;/span>100%&lt;span class="o">)&lt;/span>
 rename app-office/wps-office/&lt;span class="o">{&lt;/span>wps-office-11.1.0.10702.ebuild &lt;span class="o">=&lt;/span>&amp;gt; wps-office-11.1.0.10920.ebuild&lt;span class="o">}&lt;/span> &lt;span class="o">(&lt;/span>96%&lt;span class="o">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>查看状态：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git status
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git status
 On branch wps-office
 Your branch is ahead of &lt;span class="s1">&amp;#39;upstream/master&amp;#39;&lt;/span> by &lt;span class="m">1&lt;/span> commit.
 &lt;span class="o">(&lt;/span>use &lt;span class="s2">&amp;#34;git push&amp;#34;&lt;/span> to publish your &lt;span class="nb">local&lt;/span> commits&lt;span class="o">)&lt;/span>
 nothing to commit, working tree clean
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>推送到自己的远程仓库&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">$ git push origin
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">~/gentoo-zh $ git push origin
 Enumerating objects: 10, &lt;span class="k">done&lt;/span>.
 Counting objects: 100% &lt;span class="o">(&lt;/span>10/10&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
 Delta compression using up to &lt;span class="m">32&lt;/span> threads
@@ -206,13 +214,14 @@ remote: https://github.com/liangyongxiang/gentoo-zh/pull/new/wps-office
 remote:
 To github.com:liangyongxiang/gentoo-zh.git
 * &lt;span class="o">[&lt;/span>new branch&lt;span class="o">]&lt;/span> wps-office -&amp;gt; wps-office
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果细心的小伙伴可能会发现，这里对自己的远程仓库只有push的操作没有pull或者fetch的操作。
-自己的远程仓库只是用来临时保持pull request需要的commit信息，在pull request合并之后就不再需要。
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果细心的小伙伴可能会发现，这里对自己的远程仓库只有push的操作，没有pull或者fetch的操作。
+自己的远程仓库只是用来临时保持pull request需要的commit的，在pull request合并之后就不再需要，所有信息都在上游仓库里了。
 所以自己的远程仓库并不需要和上游的远程仓库保持同步。&lt;/p>
-&lt;p>在摘取提交的时候，反而首先 fetch 上游的远程仓库，这是为了保持和上游同步，避免出现不必要的冲突。&lt;/p>
-&lt;p>到这里，本地的工作基本完成了，接下来是在github发起pull request。可以参考网上其他教程，例如 &lt;a class="link" href="https://chinese.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github/" target="_blank" rel="noopener"
->https://chinese.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github/&lt;/a> ，略
-这里我发的pull request: &lt;a class="link" href="https://github.com/microcai/gentoo-zh/pull/1607" target="_blank" rel="noopener"
+&lt;p>在摘取提交的时候，首先fetch上游的远程仓库，这是为了保持和上游同步，避免出现不必要的冲突。&lt;/p>
+&lt;p>到这里，本地的工作基本完成了，接下来是在github发起pull request。&lt;/p>
+&lt;p>可以参考网上其他教程，例如 &lt;a class="link" href="https://chinese.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github/" target="_blank" rel="noopener"
+>https://chinese.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github/&lt;/a> ，略&lt;/p>
+&lt;p>这里我发的pull request: &lt;a class="link" href="https://github.com/microcai/gentoo-zh/pull/1607" target="_blank" rel="noopener"
 >https://github.com/microcai/gentoo-zh/pull/1607&lt;/a>&lt;/p></description></item><item><title>WM学习</title><link>https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/</link><pubDate>Fri, 01 Jan 2021 01:39:10 +0800</pubDate><guid>https://liangyongxiang.github.io/p/wm%E5%AD%A6%E4%B9%A0/</guid><description>&lt;h1 id="tinywm">TINYWM&lt;/h1>
 &lt;p>我现在用的wm是dwm, 它是linux的一个极简的窗口管理器。基于C语言，大概只有2000行的代码。
 不过它还不是最简单的窗口管理器。最简单的窗口管理器是tinywm: &lt;a class="link" href="http://incise.org/tinywm.html" target="_blank" rel="noopener"
