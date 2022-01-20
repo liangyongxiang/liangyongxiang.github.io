@@ -198,7 +198,7 @@ RepoMan scours the neighborhood...
 RepoMan sez: <span class=s2>&#34;You&#39;re only giving me a partial QA payment?
 </span><span class=s2>              I&#39;ll take it this time, but I&#39;m not happy.&#34;</span>
 </code></pre></div><p>这里检查只发现一个Copyright的小问题，是因为这个包上次更新是2021年的，现在是2022年了。由于repoman的commit会帮忙修改，所以这里可以忽略</p>
-<p>然后我们开始提交：</p>
+<p>然后我们开始提交，这里也可以使用<code>git commit -m 'xxx/xxx: xxx'</code>，repoman commit底层也是调用git commit，但是会做更多的检查，所以推荐使用。</p>
 <pre tabindex=0><code>root # repoman commit -m 'app-office/wps-office: bump to 11.1.0.10920'
 RepoMan scours the neighborhood...
 &gt;&gt;&gt; Creating Manifest for /var/db/repos/local/app-office/wps-office

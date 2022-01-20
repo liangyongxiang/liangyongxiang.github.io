@@ -99,7 +99,7 @@ app-office/wps-office/wps-office-11.1.0.10920.ebuild: line 1: Invalid Copyright
 RepoMan sez: &lt;span class="s2">&amp;#34;You&amp;#39;re only giving me a partial QA payment?
 &lt;/span>&lt;span class="s2"> I&amp;#39;ll take it this time, but I&amp;#39;m not happy.&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>这里检查只发现一个Copyright的小问题，是因为这个包上次更新是2021年的，现在是2022年了。由于repoman的commit会帮忙修改，所以这里可以忽略&lt;/p>
-&lt;p>然后我们开始提交：&lt;/p>
+&lt;p>然后我们开始提交，这里也可以使用&lt;code>git commit -m 'xxx/xxx: xxx'&lt;/code>，repoman commit底层也是调用git commit，但是会做更多的检查，所以推荐使用。&lt;/p>
 &lt;pre tabindex="0">&lt;code>root # repoman commit -m 'app-office/wps-office: bump to 11.1.0.10920'
 RepoMan scours the neighborhood...
 &amp;gt;&amp;gt;&amp;gt; Creating Manifest for /var/db/repos/local/app-office/wps-office
