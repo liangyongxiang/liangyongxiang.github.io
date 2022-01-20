@@ -1,0 +1,388 @@
+<!doctype html><html lang=en>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。
+例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。
+因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。
+在我这里是：
+$ git -C /var/db/repos/gentoo-zh remote -v local git@github.com:liangyongxiang/gentoo-zh.git (fetch) local git@github.com:liangyongxiang/gentoo-zh.git (push) origin git@github.com:microcai/gentoo-zh.git (fetch) origin git@github.com:microcai/gentoo-zh.git (push) 如果你使用的是非mirror的仓库，在想给gentoo-zh发pr的时候，也可以直接在里面修改。
+不过我先介绍更通用的方式，即先在自己的overlay里bump并且测试好，然后才在gentoo-zh里提交发pull request
+在自己的overlay里bump测试  需要有自己的overlay 复制已有的ebuild到自己的overly 安装运行测试 提交修改  自定义overlay 如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。
+简单来说就是：
+root # eselect repository create local # 自定义本地overlay root # cd /var/db/repos/local/  root # git init # 使用git管理自己的overlay，非必须但是强烈推荐 root # git add .  root # git commit -m &amp;#39;create overlay&amp;#39; 复制想要bump的ebuild到你的overlay 这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11."><title>Gentoo Bump and Revison</title>
+<link rel=canonical href=https://liangyongxiang.github.io/p/gentoo-bump-and-revison/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Gentoo Bump and Revison">
+<meta property="og:description" content="在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。
+例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。
+因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。
+在我这里是：
+$ git -C /var/db/repos/gentoo-zh remote -v local git@github.com:liangyongxiang/gentoo-zh.git (fetch) local git@github.com:liangyongxiang/gentoo-zh.git (push) origin git@github.com:microcai/gentoo-zh.git (fetch) origin git@github.com:microcai/gentoo-zh.git (push) 如果你使用的是非mirror的仓库，在想给gentoo-zh发pr的时候，也可以直接在里面修改。
+不过我先介绍更通用的方式，即先在自己的overlay里bump并且测试好，然后才在gentoo-zh里提交发pull request
+在自己的overlay里bump测试  需要有自己的overlay 复制已有的ebuild到自己的overly 安装运行测试 提交修改  自定义overlay 如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。
+简单来说就是：
+root # eselect repository create local # 自定义本地overlay root # cd /var/db/repos/local/  root # git init # 使用git管理自己的overlay，非必须但是强烈推荐 root # git add .  root # git commit -m &amp;#39;create overlay&amp;#39; 复制想要bump的ebuild到你的overlay 这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11.">
+<meta property="og:url" content="https://liangyongxiang.github.io/p/gentoo-bump-and-revison/">
+<meta property="og:site_name" content="yongxiang">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2022-01-20T20:56:56+08:00"><meta property="article:modified_time" content="2022-01-20T20:56:56+08:00">
+<meta name=twitter:title content="Gentoo Bump and Revison">
+<meta name=twitter:description content="在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。
+例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。
+因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。
+在我这里是：
+$ git -C /var/db/repos/gentoo-zh remote -v local git@github.com:liangyongxiang/gentoo-zh.git (fetch) local git@github.com:liangyongxiang/gentoo-zh.git (push) origin git@github.com:microcai/gentoo-zh.git (fetch) origin git@github.com:microcai/gentoo-zh.git (push) 如果你使用的是非mirror的仓库，在想给gentoo-zh发pr的时候，也可以直接在里面修改。
+不过我先介绍更通用的方式，即先在自己的overlay里bump并且测试好，然后才在gentoo-zh里提交发pull request
+在自己的overlay里bump测试  需要有自己的overlay 复制已有的ebuild到自己的overly 安装运行测试 提交修改  自定义overlay 如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。
+简单来说就是：
+root # eselect repository create local # 自定义本地overlay root # cd /var/db/repos/local/  root # git init # 使用git管理自己的overlay，非必须但是强烈推荐 root # git add .  root # git commit -m &amp;#39;create overlay&amp;#39; 复制想要bump的ebuild到你的overlay 这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11.">
+</head>
+<body>
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.body.dataset.scheme='dark':document.body.dataset.scheme='light'})()</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+<aside class="sidebar left-sidebar sticky">
+<button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box>
+<span class=hamburger-inner></span>
+</span>
+</button>
+<header class=site-info>
+<figure class=site-avatar>
+<img src=/img/avatar_hudd9a365c29a6708c36ffa7d3faae48a1_171305_300x0_resize_q75_box.jpg width=300 height=200 class=site-logo loading=lazy alt=Avatar>
+</figure>
+<h1 class=site-name><a href=https://liangyongxiang.github.io>yongxiang</a></h1>
+<h2 class=site-description>emerge -e @world</h2>
+</header>
+<ol class=menu id=main-menu>
+<li>
+<a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span>
+</a>
+</li>
+<li>
+<a href=/about><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span>
+</a>
+</li>
+<li>
+<a href=/archives><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span>
+</a>
+</li>
+<li>
+<a href=/search><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span>
+</a>
+</li>
+<li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span>
+</li>
+</ol>
+</aside>
+<main class="main full-width">
+<div id=article-toolbar>
+<a href=https://liangyongxiang.github.io class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<h2 class=article-title>
+<a href=/p/gentoo-bump-and-revison/>Gentoo Bump and Revison</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>2022/01/01</time>
+</footer></div>
+</header>
+<section class=article-content>
+<p>在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。
+这时候推荐自己亲自动手上，bump到新的版本真的非常容易。</p>
+<p>例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。</p>
+<p>因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。</p>
+<p>在我这里是：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git -C /var/db/repos/gentoo-zh remote -v
+<span class=nb>local</span>   git@github.com:liangyongxiang/gentoo-zh.git <span class=o>(</span>fetch<span class=o>)</span>
+<span class=nb>local</span>   git@github.com:liangyongxiang/gentoo-zh.git <span class=o>(</span>push<span class=o>)</span>
+origin  git@github.com:microcai/gentoo-zh.git <span class=o>(</span>fetch<span class=o>)</span>
+origin  git@github.com:microcai/gentoo-zh.git <span class=o>(</span>push<span class=o>)</span>
+</code></pre></div><p>如果你使用的是非mirror的仓库，在想给gentoo-zh发pr的时候，也可以直接在里面修改。</p>
+<p>不过我先介绍更通用的方式，即先在自己的overlay里bump并且测试好，然后才在gentoo-zh里提交发pull request</p>
+<h1 id=在自己的overlay里bump测试>在自己的overlay里bump测试</h1>
+<ol>
+<li>需要有自己的overlay</li>
+<li>复制已有的ebuild到自己的overly</li>
+<li>安装运行测试</li>
+<li>提交修改</li>
+</ol>
+<h2 id=自定义overlay>自定义overlay</h2>
+<p>如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。</p>
+<p>简单来说就是：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># eselect repository create local  # 自定义本地overlay</span>
+root <span class=c1># cd /var/db/repos/local/          </span>
+root <span class=c1># git init                         # 使用git管理自己的overlay，非必须但是强烈推荐</span>
+root <span class=c1># git add . </span>
+root <span class=c1># git commit -m &#39;create overlay&#39;</span>
+</code></pre></div><h2 id=复制想要bump的ebuild到你的overlay>复制想要bump的ebuild到你的overlay</h2>
+<p>这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11.1.0.10702，最新版本是11.1.0.10920：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># mkdir -p /var/db/repos/local/app-office/wps-office</span>
+root <span class=c1># cp -r /var/db/repos/gentoo-zh/app-office/wps-office/* /var/db/repos/local/app-office/wps-office</span>
+
+root <span class=c1># cd /var/db/repos/local/app-office/wps-office</span>
+root <span class=c1># git add .</span>
+</code></pre></div><p>这时候确认一下local overlay的状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># cd /var/db/repos/local/app-office/wps-office</span>
+root <span class=c1># git status</span>
+On branch master
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+        new file:   app-office/wps-office/Manifest
+        new file:   app-office/wps-office/metadata.xml
+        new file:   app-office/wps-office/wps-office-11.1.0.10702.ebuild
+root <span class=c1># git commit -m &#39;app-office/wps-office: add 11.1.0.10702&#39;</span>
+</code></pre></div><p>所谓bump，这里其实就是升级，所以我们只需要:
+需要保留旧版的时候：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># cp wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild</span>
+root <span class=c1># git add wps-office-11.1.0.10920.ebuild</span>
+</code></pre></div><p>不需要保留原版的时候：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git mv wps-office-11.1.0.10702.ebuild wps-office-11.1.0.10920.ebuild</span>
+</code></pre></div><p>这里我们选择不保留旧版，查看local overlay的状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git status</span>
+On branch master
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+		renamed:    wps-office-11.1.0.10702.ebuild -&gt; wps-office-11.1.0.10920.ebuild
+</code></pre></div><p>由于我们升级到新的版本需要下载新版本的distfile（可以是源码或者二进制包），这时候需要更新manifest文件。
+更新manifest文件可以通过ebuild/repoman等等命令，这里使用的是repoman：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># repoman manifest</span>
+&gt;&gt;&gt; Downloading <span class=s1>&#39;https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/10920/wps-office_11.1.0.10920_amd64.deb&#39;</span>
+/var/cache/distfiles/wps-office_11. 100%<span class=o>[==================================================================</span>&gt;<span class=o>]</span> 351.76M  28.7MB/s    in 12s
+...... <span class=c1># 删除部分log</span>
+&gt;&gt;&gt; Creating Manifest <span class=k>for</span> /var/db/repos/local/app-office/wps-office
+</code></pre></div><p>这时候去看看local overlay的状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git status</span>
+On branch master
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+		renamed:    wps-office-11.1.0.10702.ebuild -&gt; wps-office-11.1.0.10920.ebuild
+
+Changes not staged <span class=k>for</span> commit:
+  <span class=o>(</span>use <span class=s2>&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span class=o>)</span>
+  <span class=o>(</span>use <span class=s2>&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working directory<span class=o>)</span>
+        modified:   Manifest
+
+root <span class=c1># cat Manifest</span>
+DIST wps-office_11.1.0.10920_amd64.deb <span class=m>368846078</span> BLAKE2B b33f6849244b658c65003501fae8b6ac4ce9f51131e96a380e055df9278bda26618f98aff7cf52e354570f6c9c82b31010eaf6765e7ef161b6e10747b08044b2 SHA512 15d8540cd4aa1efcdfd90c1ac69fee7298caf510edd45f9558fab5075d111e6458d07aea0c06dadde8b56d001177ab2447bcfee4177400938db6f56cc7d23e6f
+DIST wps-office_11.1.0.10920_arm64.deb <span class=m>327865640</span> BLAKE2B 665139ded95a017d7ed1bfcc7de5b19d46c5b08e2a905695da86e2358f652f3a20046cafab7626b6014b040c894e112306783fc956d22882906d7ebfa964f5c3 SHA512 b7dca412b337872acc70be028cddae38ff0e0902f5683d1520b56753f0bb48e35644166f7311cd0c03819a3cd9be125d41ec50e3876405a2ebbed1eef050f9d6
+DIST wps-office_11.1.0.10920_mips64el.deb <span class=m>324211870</span> BLAKE2B 3278b46e1a9b81aa1d3146bf53febcaf53724e2d960dbcd69f92efc38f5f5d5013bcc366868cf6f7105207bbb0531b95f5c9f8887183d8fccd132d5248ef1fc8 SHA512 349f094c0a09bd9944f0424b6551e27711c2795ca9624bbc4967af6e5ee3dc95f85b743eda2b5dea4c222d1009b069eacf3ca660b51c198e44d3b9d0cfbff35b
+</code></pre></div><p>添加修改之后的manifest文件:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git add Manifest</span>
+root <span class=c1># git status</span>
+On branch master
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+        new file:   Manifest
+		renamed:    wps-office-11.1.0.10702.ebuild -&gt; wps-office-11.1.0.10920.ebuild
+</code></pre></div><h2 id=安装运行测试>安装运行测试</h2>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># emerge -av app-office/wps-office</span>
+These are the packages that would be merged, in order:
+
+Calculating dependencies... <span class=k>done</span>!
+<span class=o>[</span>ebuild  N     <span class=o>]</span> app-office/wps-office-11.1.0.10920::local  <span class=nv>USE</span><span class=o>=</span><span class=s2>&#34;systemd (-big-endian)&#34;</span> <span class=m>0</span> KiB
+
+Total: <span class=m>1</span> package <span class=o>(</span><span class=m>1</span> new<span class=o>)</span>, Size of downloads: <span class=m>0</span> KiB
+
+Would you like to merge these packages? <span class=o>[</span>Yes/No<span class=o>]</span>
+</code></pre></div><p>回车之后就升级好了，接下来就是具体运行测试了。在运行测试如果没有发现问题，我们就可以完成bump的后续工作了</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># repoman -dfx</span>
+RepoMan scours the neighborhood...
+  ebuild.badheader              <span class=m>1</span>
+   app-office/wps-office/wps-office-11.1.0.10920.ebuild: line 1: Invalid Copyright
+RepoMan sez: <span class=s2>&#34;You&#39;re only giving me a partial QA payment?
+</span><span class=s2>              I&#39;ll take it this time, but I&#39;m not happy.&#34;</span>
+</code></pre></div><p>这里检查只发现一个Copyright的小问题，是因为这个包上次更新是2021年的，现在是2022年了。由于repoman的commit会帮忙修改，所以这里可以忽略</p>
+<p>然后我们开始提交：</p>
+<pre tabindex=0><code>root # repoman commit -m 'app-office/wps-office: bump to 11.1.0.10920'
+RepoMan scours the neighborhood...
+&gt;&gt;&gt; Creating Manifest for /var/db/repos/local/app-office/wps-office
+
+Note: use --include-dev (-d) to check dependencies for 'dev' profiles
+
+* 2 files being committed...
+[master 923aeea] app-office/wps-office: bump to 11.1.0.10920
+ 3 files changed, 103 insertions(+)
+ create mode 100644 app-office/wps-office/Manifest
+ create mode 100644 app-office/wps-office/metadata.xml
+ create mode 100644 app-office/wps-office/wps-office-11.1.0.10920.ebuild
+
+Commit complete.
+RepoMan sez: &quot;If everyone were like you, I'd be out of business!&quot;
+</code></pre><p>检查我们的提交：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>root <span class=c1># git show</span>
+commit 923aeeaa0009f7153237b94c23bb6441f4e45c73 <span class=o>(</span>HEAD -&gt; master<span class=o>)</span>
+Author: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
+Date:   Thu Jan <span class=m>20</span> 22:00:26 <span class=m>2022</span> +0800
+
+    app-office/wps-office: bump to 11.1.0.10920
+
+    Package-Manager: Portage-3.0.30, Repoman-3.0.3
+    Signed-off-by: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
+
+diff --git a/app-office/wps-office/Manifest b/app-office/wps-office/Manifest
+new file mode <span class=m>100644</span>
+index 0000000..5aafb1e
+--- /dev/null
++++ b/app-office/wps-office/Manifest
+@@ -0,0 +1,3 @@
++DIST wps-office_11.1.0.10920_amd64.deb <span class=m>368846078</span> BLAKE2B b33f6849244b658c65003501fae8b6ac4ce9f51131e96a380e055df9278bda26618f98aff7cf52e354570f6c9c82b31010eaf6765e7ef161b6e10747b08044b2 SHA512 15d8540cd4aa1efcdfd90c1ac69fee7298caf510edd45f9558fab5075d111e6458d07aea0c06dadde8b56d001177ab2447bcfee4177400938db6f56cc7d23e6f
++DIST wps-office_11.1.0.10920_arm64.deb <span class=m>327865640</span> BLAKE2B 665139ded95a017d7ed1bfcc7de5b19d46c5b08e2a905695da86e2358f652f3a20046cafab7626b6014b040c894e112306783fc956d22882906d7ebfa964f5c3 SHA512 b7dca412b337872acc70be028cddae38ff0e0902f5683d1520b56753f0bb48e35644166f7311cd0c03819a3cd9be125d41ec50e3876405a2ebbed1eef050f9d6
++DIST wps-office_11.1.0.10920_mips64el.deb <span class=m>324211870</span> BLAKE2B 3278b46e1a9b81aa1d3146bf53febcaf53724e2d960dbcd69f92efc38f5f5d5013bcc366868cf6f7105207bbb0531b95f5c9f8887183d8fccd132d5248ef1fc8 SHA512 349f094c0a09bd9944f0424b6551e27711c2795ca9624bbc4967af6e5ee3dc95f85b743eda2b5dea4c222d1009b069eacf3ca660b51c198e44d3b9d0cfbff35b
+diff --git a/app-office/wps-office/metadata.xml b/app-office/wps-office/metadata.xml
+......
+</code></pre></div><p>如果经过测试<strong>没有发现问题</strong>，就可以考虑给分享给大家了。
+如果这个包是在main tree里的，需要经过48小时之后，才能发 bump request，具体是：https://wiki.gentoo.org/wiki/Zero-day_bump_requests
+如果这个包是在gentoo-zh，通常不会强制要求48小时，也非常欢迎有小伙伴直接发pull request。</p>
+<h1 id=fork-gentoo-zh然后提pr>fork gentoo-zh然后提pr</h1>
+<p>在bump好了wps-office之后，可以给gentoo-zh提交pr，这里的流程是：</p>
+<ol>
+<li>注册github帐号，fork gentoo-zh（具体过程略）</li>
+<li>clone gentoo-zh，添加需要的remote</li>
+<li>拉去gentoo-zh最新的修改</li>
+<li>复制local overlay的修改过来</li>
+<li>在github里发起pull request</li>
+</ol>
+<h2 id=clone-gentoo-zh>clone gentoo-zh</h2>
+<p>这里涉及到四个仓库：</p>
+<ol>
+<li>本地的local overlay仓库， 地址是 /var/db/repos/local</li>
+<li>新建立的本地gentoo-zh仓库, 地址是 ~/gentoo-zh</li>
+<li>microcai/gentoo-zh仓库, 地址是 <a class=link href=https://github.com/microcai/gentoo-zh.git target=_blank rel=noopener>https://github.com/microcai/gentoo-zh.git</a></li>
+<li>fork的仓库，这里是liangyongxiang/gentoo-zh，地址是：git@github.com:liangyongxiang/gentoo-zh.git
+选择https还是ssh地址根据个人喜欢即可</li>
+</ol>
+<h3 id=准备工作>准备工作</h3>
+<p>这里的演示都是在~/gentoo-zh里，首先clone自己的远程仓库，这个步骤仅仅在后续bump其他包不需要做。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git clone git@github.com:liangyongxiang/gentoo-zh.git ~/gentoo-zh
+$ git remote add upstream https://github.com/microcai/gentoo-zh.git
+$ git remote add <span class=nb>local</span> /var/db/repos/local
+</code></pre></div><p>查看状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>local</span>   /var/db/repos/local <span class=o>(</span>fetch<span class=o>)</span>
+<span class=nb>local</span>   /var/db/repos/local <span class=o>(</span>push<span class=o>)</span>
+origin  git@github.com:liangyongxiang/gentoo-zh.git <span class=o>(</span>fetch<span class=o>)</span>
+origin  git@github.com:liangyongxiang/gentoo-zh.git <span class=o>(</span>push<span class=o>)</span>
+upstream        https://github.com/microcai/gentoo-zh.git <span class=o>(</span>fetch<span class=o>)</span>
+upstream        https://github.com/microcai/gentoo-zh.git <span class=o>(</span>push<span class=o>)</span>
+</code></pre></div><h3 id=摘取提交>摘取提交</h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git fetch upstream
+$ git checkout -b wps-office upstream/master
+$ git fetch <span class=nb>local</span>
+</code></pre></div><p>查看状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git log local/master 
+
+commit 4adaa116596ee8f1500ec55f882bb56aa68076d6 <span class=o>(</span>local/master<span class=o>)</span>
+Author: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
+Date:   Thu Jan <span class=m>20</span> 22:48:04 <span class=m>2022</span> +0800
+
+    app-office/wps-office: bump to 11.1.0.10920
+
+    Package-Manager: Portage-3.0.30, Repoman-3.0.3
+    Signed-off-by: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
+
+commit edec02ee834f92e9143226ee6c10047af991f70b
+Author: Yongxiang Liang &lt;tanekliang@gmail.com&gt;
+Date:   Thu Jan <span class=m>20</span> 22:45:40 <span class=m>2022</span> +0800
+
+    app-office/wps-office: add 11.1.0.10702
+......
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git cherry-pick 4adaa116596ee8f1500ec55f882bb56aa68076d6
+923aeeaa0009f7153237b94c23bb6441f4e45c7-office f92365b96<span class=o>]</span> app-office/wps-office: bump to 11.1.0.10920
+ Date: Thu Jan <span class=m>20</span> 22:48:04 <span class=m>2022</span> +0800
+ <span class=m>2</span> files changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>5</span> deletions<span class=o>(</span>-<span class=o>)</span>
+ rewrite app-office/wps-office/Manifest <span class=o>(</span>100%<span class=o>)</span>
+ rename app-office/wps-office/<span class=o>{</span>wps-office-11.1.0.10702.ebuild <span class=o>=</span>&gt; wps-office-11.1.0.10920.ebuild<span class=o>}</span> <span class=o>(</span>96%<span class=o>)</span>
+</code></pre></div><p>查看状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git status
+On branch wps-office
+Your branch is ahead of <span class=s1>&#39;upstream/master&#39;</span> by <span class=m>1</span> commit.
+  <span class=o>(</span>use <span class=s2>&#34;git push&#34;</span> to publish your <span class=nb>local</span> commits<span class=o>)</span>
+
+nothing to commit, working tree clean
+</code></pre></div><p>推送到自己的远程仓库</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ git push origin
+Enumerating objects: 10, <span class=k>done</span>.
+Counting objects: 100% <span class=o>(</span>10/10<span class=o>)</span>, <span class=k>done</span>.
+Delta compression using up to <span class=m>32</span> threads
+Compressing objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+Writing objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, 2.58 KiB <span class=p>|</span> 2.58 MiB/s, <span class=k>done</span>.
+Total <span class=m>6</span> <span class=o>(</span>delta 2<span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span>
+remote: Resolving deltas: 100% <span class=o>(</span>2/2<span class=o>)</span>, completed with <span class=m>2</span> <span class=nb>local</span> objects.
+remote:
+remote: Create a pull request <span class=k>for</span> <span class=s1>&#39;wps-office&#39;</span> on GitHub by visiting:
+remote:      https://github.com/liangyongxiang/gentoo-zh/pull/new/wps-office
+remote:
+To github.com:liangyongxiang/gentoo-zh.git
+ * <span class=o>[</span>new branch<span class=o>]</span>          wps-office -&gt; wps-office
+</code></pre></div><p>如果细心的小伙伴可能会发现，这里对自己的远程仓库只有push的操作没有pull或者fetch的操作。
+自己的远程仓库只是用来临时保持pull request需要的commit信息，在pull request合并之后就不再需要。
+所以自己的远程仓库并不需要和上游的远程仓库保持同步。</p>
+<p>在摘取提交的时候，反而首先 fetch 上游的远程仓库，这是为了保持和上游同步，避免出现不必要的冲突。</p>
+<p>到这里，本地的工作基本完成了，接下来是在github发起pull request。（略）
+这里我发的pull request: <a class=link href=https://github.com/microcai/gentoo-zh/pull/1607 target=_blank rel=noopener>https://github.com/microcai/gentoo-zh/pull/1607</a></p>
+</section>
+<footer class=article-footer>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<script src=https://utteranc.es/client.js repo=liangyongxiang/liangyongxiang.github.io issue-term=pathname crossorigin=anonymous async></script>
+<style>.utterances{max-width:unset}</style>
+<script>function setUtterancesTheme(b){let a=document.querySelector('.utterances iframe');a&&a.contentWindow.postMessage({type:'set-theme',theme:`github-${b}`},'https://utteranc.es')}addEventListener('message',a=>{if(a.origin!=='https://utteranc.es')return;setUtterancesTheme(document.body.dataset.scheme)}),window.addEventListener('onColorSchemeChange',a=>{setUtterancesTheme(a.detail)})</script>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 yongxiang
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.2.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
