@@ -8,9 +8,9 @@ $ git -C /var/db/repos/gentoo-zh remote -v local git@github.com:liangyongxiang/g
 不过我先介绍更通用的方式，即先在自己的overlay里bump并且测试好，然后才在gentoo-zh里提交发pull request
 在自己的overlay里bump测试  需要有自己的overlay 复制已有的ebuild到自己的overly 安装运行测试 提交修改  自定义overlay 如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。
 简单来说就是：
-root # eselect repository create local # 自定义本地overlay root # cd /var/db/repos/local/  root # git init # 使用git管理自己的overlay，非必须但是强烈推荐 root # git add .  root # git commit -m &amp;#39;create overlay&amp;#39; 复制想要bump的ebuild到你的overlay 这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11."><title>Gentoo Bump and Revison</title>
-<link rel=canonical href=https://liangyongxiang.github.io/p/gentoo-bump-and-revison/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Gentoo Bump and Revison">
+root # eselect repository create local # 自定义本地overlay root # cd /var/db/repos/local/  root # git init # 使用git管理自己的overlay，非必须但是强烈推荐 root # git add .  root # git commit -m &amp;#39;create overlay&amp;#39; 复制想要bump的ebuild到你的overlay 这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11."><title>Gentoo Bump</title>
+<link rel=canonical href=https://liangyongxiang.github.io/p/gentoo-bump/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Gentoo Bump">
 <meta property="og:description" content="在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。
 例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。
 因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。
@@ -20,10 +20,10 @@ $ git -C /var/db/repos/gentoo-zh remote -v local git@github.com:liangyongxiang/g
 在自己的overlay里bump测试  需要有自己的overlay 复制已有的ebuild到自己的overly 安装运行测试 提交修改  自定义overlay 如果没有自己的本地overlay，可以自定义overlay，官方Wiki介绍在这里：https://wiki.gentoo.org/wiki/Creating_an_ebuild_repository。
 简单来说就是：
 root # eselect repository create local # 自定义本地overlay root # cd /var/db/repos/local/  root # git init # 使用git管理自己的overlay，非必须但是强烈推荐 root # git add .  root # git commit -m &amp;#39;create overlay&amp;#39; 复制想要bump的ebuild到你的overlay 这里以gentoo-zh的wps为例，当前gentoo-zh里wps的版本是11.">
-<meta property="og:url" content="https://liangyongxiang.github.io/p/gentoo-bump-and-revison/">
+<meta property="og:url" content="https://liangyongxiang.github.io/p/gentoo-bump/">
 <meta property="og:site_name" content="yongxiang">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2022-01-20T20:56:56+08:00"><meta property="article:modified_time" content="2022-01-20T20:56:56+08:00">
-<meta name=twitter:title content="Gentoo Bump and Revison">
+<meta name=twitter:title content="Gentoo Bump">
 <meta name=twitter:description content="在使用Gentoo的时候，经常看到了某个软件的上游发布了新版本，隔壁arch的小伙伴都用上了，但是Gentoo这边还用不了，心痒难耐。 这时候推荐自己亲自动手上，bump到新的版本真的非常容易。
 例如今天有小伙伴说wps都更新到11.1.0.10920了，gentoo-zh这边还是旧的（其实天苯的overlay里面已经有新版了，假装没看到）。
 因为大家的gentoo-zh overlya的配置不一定一样，有的喜欢直接使用原始的git仓库，有的喜欢使用gentoo-mirror的仓库，所以bump的操作会有细微的差异。
@@ -85,7 +85,7 @@ root # eselect repository create local # 自定义本地overlay root # cd /var/d
 <header class=article-header>
 <div class=article-details>
 <h2 class=article-title>
-<a href=/p/gentoo-bump-and-revison/>Gentoo Bump and Revison</a>
+<a href=/p/gentoo-bump/>Gentoo Bump</a>
 </h2>
 <footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--published>2022/01/01</time>
